@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies"
+      - sudo apt-get update -y || true
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - zip -r app.zip .  # zip your full project
+
+artifacts:
+  files:
+    - app.zip
