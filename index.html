@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Testing Page</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0; padding: 0;
+            color: #333;
+        }
+        header {
+            background: #24292e;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 { margin-top: 0; }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        input, button, textarea {
+            width: 100%; padding: 10px; margin-top: 5px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: gray;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>DevOps Engineer Testing Webpage</h1>
+    <p>Environment: <span id="env">loading...</span></p>
+    <p>Version: <span id="version">v1.0.0</span></p>
+</header>
+
+<section>
+    <h2>🔍 Health Check</h2>
+    <button onclick="ping()">Run Ping Test</button>
+    <pre id="pingResult"></pre>
+</section>
+
+<section>
+    <h2>🌐 API Connectivity Test</h2>
+    <input id="apiUrl" placeholder="Enter API URL (GET endpoint)">
+    <button onclick="callApi()">Call API</button>
+    <pre id="apiOutput"></pre>
+</section>
+
+<section>
+    <h2>📤 Form Submission Test</h2>
+    <form onsubmit="event.preventDefault(); submitForm();">
+        <input id="nameField" placeholder="Your name">
+        <textarea id="messageField" placeholder="Message"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <pre id="formOutput"></pre>
+</section>
+
+<section>
+    <h2>⚙️ Client System Info</h2>
+    <pre id="systemInfo"></pre>
+</section>
+
+<section>
+    <h2>📊 Load Testing Trigger</h2>
+    <button onclick="loadTest()">Run 200 Requests</button>
+    <pre id="loadResult"></pre>
+</section>
+
+<div class="footer">
+    DevOps Testing Page • Auto-Deploy Ready • <span id="timestamp"></span>
+</div>
+
+<script>
+    // Environment & timestamp (DevOps useful)
+    document.getElementById("env").textContent =
+        (window.location.hostname.includes("prod")) ? "Production" :
+        (window.location.hostname.includes("dev")) ? "Development" :
+        "Unknown";
+
+    document.getElementById("timestamp").textContent = new Date().toLocaleString();
+
+    // Health check
